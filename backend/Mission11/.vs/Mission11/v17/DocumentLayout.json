@@ -46,8 +46,7 @@
               "RelativeToolTip": "Mission11\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-20T03:06:49.001Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T03:06:49.001Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Mission11\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-20T03:04:39.166Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T03:04:39.166Z"
             },
             {
               "$type": "Document",
@@ -72,8 +70,7 @@
               "RelativeToolTip": "Mission11\\Program.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAiwBkAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T03:02:18.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T03:02:18.247Z"
             },
             {
               "$type": "Document",
@@ -85,8 +82,7 @@
               "RelativeToolTip": "Mission11\\Data\\Book.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T02:57:24.26Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T02:57:24.26Z"
             },
             {
               "$type": "Document",
@@ -98,8 +94,7 @@
               "RelativeToolTip": "Mission11\\Data\\BookContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T02:53:01.352Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-20T02:53:01.352Z"
             },
             {
               "$type": "Document",
@@ -109,7 +104,7 @@
               "RelativeDocumentMoniker": "Mission11\\Controllers\\BookController.cs",
               "ToolTip": "C:\\Users\\Blake\\OneDrive\\Desktop\\Mission11\\backend\\Mission11\\Mission11\\Controllers\\BookController.cs",
               "RelativeToolTip": "Mission11\\Controllers\\BookController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAIwCMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAUwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T02:51:32.332Z",
               "EditorCaption": ""
