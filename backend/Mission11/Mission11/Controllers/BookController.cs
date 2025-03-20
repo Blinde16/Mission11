@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Mission11.Data;
 
-namespace Mission11.Controllers
+namespace Mission11.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -15,11 +15,24 @@ namespace Mission11.Controllers
             _bookContext = temp;
         }
         [HttpGet("AllBooks")]
-        public IEnumerable<Book> GetBooks()
+        public IActionResult GetBooks(int pageSize = 10, int pageNumber = 1, string sortOrder = "asc")
         {
-            var something = _bookContext.Books.ToList();
+            IQueryable<Book> booksQuery = _bookContext.Books;
 
-            return something;
+            // Ensure sorting works explicitly
+            booksQuery = sortOrder.ToLower() == "asc"
+                ? booksQuery.OrderBy(b => b.Title)
+                : booksQuery.OrderByDescending(b => b.Title);
+
+            var books = booksQuery
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var totalNumBooks = _bookContext.Books.Count();
+
+            return Ok(new { books, totalNumBooks });
         }
+
     }
 }
