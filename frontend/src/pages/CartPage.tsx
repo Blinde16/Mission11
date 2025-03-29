@@ -15,9 +15,9 @@ function CartPage() {
           ) : (
             <ul>
               {cart.map((item: CartItem) => (
-                <li key={item.projectId}>
-                  {item.projectName}: ${item.donationAmount.toFixed(2)}
-                  <button onClick={() => removeFromCart(item.projectId)}>
+                <li key={item.bookId}>
+                  {item.title}: ${item.price.toFixed(2)}
+                  <button onClick={() => removeFromCart(item.bookId)}>
                     Remove
                   </button>
                 </li>
@@ -27,8 +27,8 @@ function CartPage() {
         </div>
         <h3>Total:</h3>
         <button>Checkout:</button>
-        <button onClick={() => navigate('/projects')}>
-          Continue Browsing:
+        <button onClick={() => navigate('/BooksPage')}>
+          Continue Shopping:
         </button>
       </div>
     </>
