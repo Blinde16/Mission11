@@ -6,6 +6,7 @@ interface CartContextType {
   addToCart: (item: CartItem) => void;
   removeFromCart: (projectId: number) => void;
   clearCart: () => void;
+  total: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -14,15 +15,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const addToCart = (item: CartItem) => {
+    if (!item.bookId || !item.title || item.price === undefined) {
+      console.error('Invalid item added to cart:', item);
+      return;
+    }
     setCart((prevCart) => {
-      const existingItem = prevCart.find((c) => c.bookId === item.bookId);
-      const updatedCart = prevCart.map((c) =>
-        c.bookId === item.bookId
-          ? { ...c, donationAmount: c.price + item.price }
-          : c,
-      );
-
-      return existingItem ? updatedCart : [...prevCart, item];
+      const existingItem = prevCart.find((i) => i.bookId === item.bookId);
+      if (existingItem) {
+        return prevCart.map((i) =>
+          i.bookId === item.bookId ? { ...i, quantity: i.quantity + 1 } : i,
+        );
+      }
+      return [...prevCart, { ...item, quantity: 1 }];
     });
   };
 
@@ -34,10 +38,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart(() => []);
   };
 
+  // Compute total dynamically
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   return (
     <>
       <CartContext.Provider
-        value={{ cart, addToCart, removeFromCart, clearCart }}
+        value={{ cart, addToCart, removeFromCart, clearCart, total }}
       >
         {children}
       </CartContext.Provider>

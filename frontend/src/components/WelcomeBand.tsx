@@ -2,7 +2,7 @@ function WelcomeBand() {
   return (
     <>
       <div className="row bg-primary-text-white">
-        <h1>Water Projects</h1>;
+        <h1>Book Store</h1>;
       </div>
     </>
   );

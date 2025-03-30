@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Book } from '../types/Book';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { CartItem } from '../types/CartItem';
 
@@ -15,11 +15,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
   // Adding the Neccesary CartItems
   const navigate = useNavigate();
   const { addToCart } = useCart();
-  const { title, bookId } = useParams();
-  const [quantity] = useState<number>(1);
-  const [subtotal] = useState<number>(0);
-  const [total] = useState<number>(0);
-  const [price] = useState<number>(0);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -38,20 +33,29 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     fetchBooks();
   }, [pageSize, pageNumber, sortOrder, selectedCategories]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (book: Book) => {
     const newItem: CartItem = {
-      bookId: Number(bookId),
-      title: title || 'No Book Found',
-      price: price,
-      quantity: quantity,
-      subtotal: subtotal,
-      total: total,
+      bookId: book.bookId,
+      title: book.title || 'No Book Found',
+      price: book.price,
+      quantity: 1,
     };
     addToCart(newItem);
     {
       books.map((b) => navigate(`/cart/${b.title}/${b.bookId}`));
     }
   };
+
+  const cardColors = [
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark',
+  ];
   return (
     <>
       <h1>Amazon Book List</h1>
@@ -60,48 +64,54 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
       >
         Sort by Title ({sortOrder === 'asc' ? 'Ascending' : 'Descending'})
       </button>
-
       <br />
-      {books.map((b) => (
-        <div id="projectCard" className="card" key={b.isbn}>
-          <h3 className="card-title">{b.title}</h3>
-          <ul className="card-body">
-            <li>
-              <strong>Author:</strong> {b.author}
-            </li>
-            <li>
-              <strong>Publisher:</strong> {b.publisher}
-            </li>
-            <li>
-              <strong>ISBN:</strong> {b.isbn}
-            </li>
-            <li>
-              <strong>Classification:</strong> {b.classification}
-            </li>
-            <li>
-              <strong>Category:</strong> {b.category}
-            </li>
-            <li>
-              <strong>Page Count:</strong> {b.pageCount}
-            </li>
-            <li>
-              <strong>Price:</strong> {b.price}
-            </li>
-          </ul>
 
-          <button className="btn btn-success" onClick={handleAddToCart}>
-            Add To Cart
-          </button>
+      {books.map((b, index) => (
+        // BOOSTRAP EXTRA #2 Card-Colors
+        // Using a randomized index to assign card colors to different cards for the project.
+        <div
+          id="projectCard"
+          className={`card text-white bg-${cardColors[index % cardColors.length]} mb-3`}
+          key={b.isbn}
+        >
+          <div className="card-header">{b.title}</div>
+          <div className="card-body">
+            <h5 className="card-title">{b.author}</h5>
+            <ul className="list-unstyled">
+              <li>
+                <strong>Publisher:</strong> {b.publisher}
+              </li>
+              <li>
+                <strong>ISBN:</strong> {b.isbn}
+              </li>
+              <li>
+                <strong>Classification:</strong> {b.classification}
+              </li>
+              <li>
+                <strong>Category:</strong> {b.category}
+              </li>
+              <li>
+                <strong>Page Count:</strong> {b.pageCount}
+              </li>
+              <li>
+                <strong>Price:</strong> ${b.price.toFixed(2)}
+              </li>
+            </ul>
+            <button
+              className="btn btn-light"
+              onClick={() => handleAddToCart(b)}
+            >
+              Add To Cart
+            </button>
+          </div>
         </div>
       ))}
-
       <button
         disabled={pageNumber === 1}
         onClick={() => setPageNumber(pageNumber - 1)}
       >
         Previous
       </button>
-
       {[...Array(totalPages)].map((_, index) => (
         <button
           key={index + 1}
@@ -111,14 +121,12 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           {index + 1}
         </button>
       ))}
-
       <button
         disabled={pageNumber >= totalPages}
         onClick={() => setPageNumber(pageNumber + 1)}
       >
         Next
       </button>
-
       <br />
       <label>
         Page Size:{' '}
@@ -133,7 +141,6 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           <option value="20">20</option>
         </select>
       </label>
-
       {/* Remove bullets from list items */}
       <style>
         {`

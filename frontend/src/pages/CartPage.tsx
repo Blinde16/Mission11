@@ -4,7 +4,10 @@ import { CartItem } from '../types/CartItem';
 
 function CartPage() {
   const navigate = useNavigate();
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, total } = useCart();
+
+  console.log('Cart Contents:', cart); // Debugging log
+
   return (
     <>
       <div>
@@ -13,11 +16,28 @@ function CartPage() {
           {cart.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
-            <ul>
+            //------------------BOOSTRAP Stylized Formatting for Bulleted List HERE #1 ------------------
+            <ul className="list-group">
               {cart.map((item: CartItem) => (
-                <li key={item.bookId}>
-                  {item.title}: ${item.price.toFixed(2)}
-                  <button onClick={() => removeFromCart(item.bookId)}>
+                <li
+                  key={item.bookId}
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div>
+                    <strong>{item.title}</strong>
+                    <br />
+                    <span>Price: ${item.price.toFixed(2)}</span>
+                    <br />
+                    <span>Qty: {item.quantity}</span>
+                    <br />
+                    <span>
+                      Sub-Total: ${(item.price * item.quantity).toFixed(2)}
+                    </span>
+                  </div>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => removeFromCart(item.bookId)}
+                  >
                     Remove
                   </button>
                 </li>
@@ -25,7 +45,7 @@ function CartPage() {
             </ul>
           )}
         </div>
-        <h3>Total:</h3>
+        <h4>Total: ${total.toFixed(2)}</h4>
         <button>Checkout:</button>
         <button onClick={() => navigate('/BooksPage')}>
           Continue Shopping:
