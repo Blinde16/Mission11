@@ -4,7 +4,7 @@ import BookList from '../components/BookList';
 import WelcomeBand from '../components/WelcomeBand';
 import CartSummary from '../components/CartSummary';
 
-function ProjectsPage() {
+function BooksPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   return (
@@ -28,4 +28,4 @@ function ProjectsPage() {
   );
 }
 
-export default ProjectsPage;
+export default BooksPage;
