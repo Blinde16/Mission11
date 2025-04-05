@@ -30,7 +30,10 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
           selectedCategories,
         );
         setBooks(data.books);
-        setTotalPages(Math.ceil(data.totalNumberbooks / pageSize));
+        const total = Number(data.totalNumberBooks);
+        setTotalPages(
+          Number.isFinite(total) && total > 0 ? Math.ceil(total / pageSize) : 1,
+        );
       } catch (error) {
         setError((error as Error).message);
       } finally {

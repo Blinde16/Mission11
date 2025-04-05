@@ -52,14 +52,13 @@ const AdminProjectsPage = () => {
   return (
     <div>
       <h1>Admin - Books</h1>
-      {!showForm} && (
+      {!showForm}
       <button
         className="btn btn-success mb-3"
         onClick={() => setShowForm(true)}
       >
         Add Project
       </button>
-      )
       {showForm && (
         <NewBookForm
           onSuccess={() => {
@@ -87,12 +86,14 @@ const AdminProjectsPage = () => {
         <thead className="table-dark">
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Regional Program</th>
-            <th>Impact</th>
-            <th>Phase</th>
-            <th>Status</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Classification</th>
+            <th>Category</th>
+            <th>Page Count</th>
+            <th>Price</th>
             <th></th>
           </tr>
         </thead>

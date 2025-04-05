@@ -78,7 +78,25 @@ const EditBookForm = ({ book, onSuccess, onCancel }: EditBookFormProps) => {
           onChange={handleChange}
         />
       </label>
-      <button type="submit">Add Book</button>
+      <label>
+        Page Count:
+        <input
+          type="number"
+          name="pageCount"
+          value={formData.pageCount}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Price:
+        <input
+          type="number"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+        />
+      </label>
+      <button type="submit">Update Book</button>
       <button type="submit" onClick={onCancel}>
         Cancel
       </button>

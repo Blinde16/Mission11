@@ -87,8 +87,26 @@ const NewBookForm = ({ onSuccess, onCancel }: NewProjectFormProps) => {
           onChange={handleChange}
         />
       </label>
+      <label>
+        Page Count:
+        <input
+          type="number"
+          name="pageCount"
+          value={formData.pageCount}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Price:
+        <input
+          type="number"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+        />
+      </label>
       <button type="submit">Add Book</button>
-      <button type="submit" onClick={onCancel}>
+      <button type="button" onClick={onCancel}>
         Cancel
       </button>
     </form>
